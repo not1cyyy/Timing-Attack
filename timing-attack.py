@@ -4,8 +4,12 @@ import string
 import numpy
 import time
 import random
+import os 
 
-database = {"not1cyyy": "jamescharlesfan69"}
+database = {
+            "not1cyyy": "Nerf Akali",
+            "DistortLynn" : "Warwick Balanced"
+            }
 Chars_to_use = string.ascii_lowercase + string.ascii_uppercase + " " + "." + "0123456789"
 
 def check_password(user, guess):
@@ -68,14 +72,21 @@ def crack_password(user, length, verbose=False):
                     print(guess)
 
 
+def clear():
+    if os.name == 'nt':
+        _ = os.system('cls')
+    else:
+        _ = os.system('clear')
+
+
 def main():
-    user = "not1cyyy"
+    user = input("Enter username : ")
     length = crack_length(user, verbose=True)
-    print(f"here's the most likely password length : {length}")
-    input("ready to bruteforce ? hit enter ...")
+    print(f"Password length is most likely to be {length}")
+    input("Hit enter to bruteforce...")
     password = crack_password(user, length, verbose=True)
-    print(f"here's the cracked password : {password}")
-    print("see you again !")
+    clear()
+    print(f"Password cracked ! : {password}")
     time.sleep(3)
 
 if __name__ == '__main__':
